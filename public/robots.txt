@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and authentication pages
+Disallow: /admin
+Disallow: /signin
+Disallow: /signup
+Disallow: /reset-password
+Disallow: /update-password
+Disallow: /auth-callback
+
+# Allow all other pages
+Allow: /about
+Allow: /services
+Allow: /products
+Allow: /careers
+Allow: /contact
+Allow: /blog
+Allow: /privacy
+Allow: /terms
+
+# Sitemap location
+Sitemap: https://smartbrew.in/sitemap.xml
+
+# Crawl-delay for bots
+Crawl-delay: 1 
