@@ -35,4 +35,4 @@ If you still encounter issues after clearing the cache:
 - `npm run clean-dev` - Clear Vite cache and start dev server
 - `npm run clean-all` - Clear all caches and start dev server with forced bundling
 - `npm run build` - Build the production version
-- `npm run preview` - Preview the production build locally 
+- `npm run preview` - Preview the production build locally "# SMARTBREW_WEB_PAGE" 

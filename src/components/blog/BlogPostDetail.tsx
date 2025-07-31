@@ -61,7 +61,7 @@ const BlogPostDetail = ({ post, onClose }: BlogPostDetailProps) => {
       }
       
       // Handle bullet points for "What makes NATUREIUM different?"
-      if (paragraph.startsWith('What makes NATUREIUM different?')) {
+      if (paragraph.startsWith('What makes NATURIEM different?')) {
         const [title, ...items] = paragraph.split('\n');
         return (
           <div key={index} className="mb-6">

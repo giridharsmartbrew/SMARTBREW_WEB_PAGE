@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
           <div className="lg:col-span-5 space-y-3 lg:space-y-4">
             <Link to="/" className="flex items-center mb-2 lg:mb-3">
               <img 
-                src="/SmartBrew Neon logo-01.png" 
+                src="/SmartBrew Neon Logo - Shaded.png" 
                 alt="SMARTBREW Logo" 
                 className="h-14 sm:h-16 lg:h-20 w-auto object-contain" 
               />
@@ -138,26 +138,59 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Contact */}
-          <div className="lg:col-span-3 sm:col-span-2 lg:col-span-3">
+          <div className="lg:col-span-3 sm:col-span-2">
             <h4 className="text-base lg:text-lg font-semibold text-gray-300 mb-2 pb-1 border-b border-gray-800">Contact Us</h4>
-            <ul className="space-y-3 sm:space-y-4">
-              <li className="flex items-start gap-2">
-                <div className="mt-1 w-6 h-6 lg:w-7 lg:h-7 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                  <MapPin size={12} className="text-blue-400" />
+            
+            {/* Desktop Contact */}
+            <div className="hidden sm:block">
+              <ul className="space-y-3 sm:space-y-4">
+                <li className="flex items-start gap-2">
+                  <div className="mt-1 w-6 h-6 lg:w-7 lg:h-7 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                    <MapPin size={12} className="text-blue-400" />
+                  </div>
+                  <span className="text-gray-400 text-xs sm:text-sm flex-1 leading-tight break-words">
+                    SMARTBREW Solutions, Space Creattors Heights, Mega Mall Gurgaon (3rd floor), Golf Course Rd, Sector 28, DLF Phase 1, Gurugram, Haryana 122022
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="mt-1 w-6 h-6 lg:w-7 lg:h-7 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                    <Mail size={12} className="text-blue-400" />
+                  </div>
+                  <div className="text-gray-400 text-xs sm:text-sm flex-1 break-words">
+                    <p>Contact: <a href="mailto:contact@smartbrew.in" className="text-blue-400 hover:underline break-all">contact@smartbrew.in</a></p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            
+            {/* Mobile Contact */}
+            <div className="sm:hidden">
+              <div className="space-y-4">
+                {/* Location Card */}
+                <div className="bg-gray-800/50 rounded-md p-3 border border-gray-700/50">
+                  <div className="flex justify-center mb-2">
+                    <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+                      <MapPin size={14} className="text-blue-400" />
+                    </div>
+                  </div>
+                  <p className="text-gray-400 text-xs text-center">
+                    SMARTBREW Solutions, Space Creattors Heights, Mega Mall Gurgaon (3rd floor), Golf Course Rd, Sector 28, DLF Phase 1, Gurugram, Haryana 122022
+                  </p>
                 </div>
-                <span className="text-gray-400 text-xs sm:text-sm flex-1 leading-tight break-words">
-                  SMARTBREW Solutions, Space Creattors Heights, Mega Mall Gurgaon (3rd floor), Golf Course Rd, Sector 28, DLF Phase 1, Gurugram, Haryana 122022
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <div className="mt-1 w-6 h-6 lg:w-7 lg:h-7 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                  <Mail size={12} className="text-blue-400" />
+                
+                {/* Email Card */}
+                <div className="bg-gray-800/50 rounded-md p-3 border border-gray-700/50">
+                  <div className="flex justify-center mb-2">
+                    <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+                      <Mail size={14} className="text-blue-400" />
+                    </div>
+                  </div>
+                  <p className="text-gray-400 text-xs text-center">
+                    Contact: <a href="mailto:contact@smartbrew.in" className="text-blue-400 hover:underline">contact@smartbrew.in</a>
+                  </p>
                 </div>
-                <div className="text-gray-400 text-xs sm:text-sm flex-1 break-words">
-                  <p>Contact: <a href="mailto:contact@smartbrew.in" className="text-blue-400 hover:underline break-all">contact@smartbrew.in</a></p>
-                </div>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
 

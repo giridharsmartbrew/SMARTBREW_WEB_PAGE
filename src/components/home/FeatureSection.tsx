@@ -70,15 +70,25 @@ const FeatureSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-dark-950">
+    <section id="features" className="py-20 bg-dark-950 mt-12 md:mt-0">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             Innovative Solutions for Modern Businesses
-          </h2>
-          <p className="text-lg text-gray-400">
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-gray-400"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             We combine cutting-edge technology with sales expertise to help businesses thrive in the digital era.
-          </p>
+          </motion.p>
         </div>
         
         <motion.div 

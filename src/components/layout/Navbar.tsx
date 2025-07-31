@@ -16,8 +16,8 @@ const pageDropdowns = {
   about: [
     { name: 'Company Story', href: '/about#hero' },
     { name: 'Our Values', href: '/about#values' },
-    { name: 'Team', href: '/about#team' },
-    { name: 'Timeline', href: '/about#timeline' }
+    { name: 'Timeline', href: '/about#timeline' },
+    { name: 'Team', href: '/about#team' }
   ],
   services: [
     { name: 'Professional Services', href: '/services#services' },
@@ -133,7 +133,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             onClick={handleLinkClick}
           >
             <img 
-              src="/SmartBrew Neon logo-01.png" 
+              src="/SmartBrew Neon Logo - Shaded.png" 
               alt="SMARTBREW Logo" 
               className="h-12 sm:h-14 md:h-16 w-auto object-contain" 
             />
@@ -357,9 +357,9 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             </div>
           </nav>
 
-          <div className="md:hidden flex items-center space-x-4">
+          <div className="md:hidden flex items-center justify-end ml-auto">
             <button
-              className="p-2 rounded-md text-gray-300 hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="p-2 rounded-md text-gray-300 hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle mobile menu"
             >

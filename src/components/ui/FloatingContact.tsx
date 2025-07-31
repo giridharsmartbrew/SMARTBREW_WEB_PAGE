@@ -194,15 +194,6 @@ const FloatingContact: React.FC = () => {
                     </p>
                   </div>
                   
-                  <div className="bg-dark-900 border border-dark-700 rounded-lg p-3 text-left">
-                    <div className="text-xs text-gray-400 mb-2">Your message:</div>
-                    <div className="text-sm">
-                      <div className="mb-1"><span className="text-gray-400">From:</span> {formData.name}</div>
-                      <div className="mb-2"><span className="text-gray-400">Email:</span> {formData.email}</div>
-                      <div className="text-gray-300">{formData.message}</div>
-                    </div>
-                  </div>
-                  
                   <div className="flex gap-2">
                     <button
                       onClick={handleNewMessage}

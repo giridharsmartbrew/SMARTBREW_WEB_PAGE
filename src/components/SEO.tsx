@@ -39,7 +39,7 @@ const SEO: React.FC<SEOProps> = ({
     "description": description,
     "url": url,
     "logo": `${url}/SmartBrew Neon logo-01.png`,
-    "foundingDate": "2023",
+    "foundingDate": "2022",
     "founder": {
       "@type": "Person",
       "name": "Himanshu Pandey"

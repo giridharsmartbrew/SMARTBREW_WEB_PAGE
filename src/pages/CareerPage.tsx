@@ -17,6 +17,7 @@ interface JobOpening {
 }
 
 const jobOpenings: JobOpening[] = [
+  // Sales Positions (IDs 1-3)
   {
     id: 1,
     title: "Impact Sales Executive",
@@ -68,6 +69,33 @@ const jobOpenings: JobOpening[] = [
   },
   {
     id: 3,
+    title: "Impact Sales Intern",
+    department: "Sales",
+    location: "Patna, India",
+    type: "Internship (2-6 months)",
+    description: "Are you driven by purpose and looking to create a meaningful impact while building a rewarding career? As an Impact Sales Intern at SMARTBREW Solutions, you will play a crucial role in supporting nonprofit organizations by generating resources, fostering relationships, and helping to transform lives, communities, and contribute towards nation building.",
+    requirements: [
+      "Purpose-Driven: You're passionate about making a difference and supporting charitable causes",
+      "Hungry for Success: You thrive on achieving goals and creating meaningful outcomes",
+      "Exceptional Communicator: You can inspire action through clear, persuasive communication",
+      "Relationship Builder: You excel at connecting with people and building trust",
+      "Team Player: You collaborate effectively and contribute to collective success",
+      "Adaptable: You think creatively and adjust strategies to achieve results",
+      "Active on social media platforms"
+    ],
+    benefits: [
+      "Stipend: ₹5,000 - 7,000/- per month",
+      "Hands-on experience in impact-driven sales",
+      "Opportunity to contribute directly to charitable initiatives",
+      "Skill development in fundraising and relationship building",
+      "Professional networking with nonprofit organizations",
+      "Experience in campaign planning and execution",
+      "Full-time in-office internship experience"
+    ]
+  },
+  // Engineering Positions (IDs 4-6)
+  {
+    id: 4,
     title: "Python Backend Developer Intern",
     department: "Engineering",
     location: "Gurugram, India",
@@ -91,7 +119,7 @@ const jobOpenings: JobOpening[] = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     title: "DevOps Intern",
     department: "Engineering",
     location: "Gurugram, India",
@@ -115,7 +143,7 @@ const jobOpenings: JobOpening[] = [
     ]
   },
   {
-    id: 5,
+    id: 6,
     title: "React Frontend Developer Intern",
     department: "Engineering",
     location: "Gurugram, India",
@@ -165,7 +193,6 @@ const CareerPage = () => {
     linkedIn: '',
     coverLetter: ''
   });
-  const [debugInfo, setDebugInfo] = useState<string | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>, type: 'resume' | 'voice') => {
     const file = event.target.files?.[0];
@@ -235,54 +262,6 @@ const CareerPage = () => {
     }
   }, [user]);
 
-  // Function to check table schema
-  const checkTableSchema = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('career_applications')
-        .select('*')
-        .limit(1);
-      
-      if (error) {
-        console.error('Error checking schema:', error);
-        setDebugInfo(`Schema error: ${error.message}`);
-        return;
-      }
-      
-      // Log available columns from the received data
-      if (data && data.length > 0) {
-        const columns = Object.keys(data[0]);
-        console.log('Available columns:', columns);
-        setDebugInfo(`Available columns: ${columns.join(', ')}`);
-      } else {
-        console.log('No data returned, cannot determine schema');
-        // Try to insert a test record to see error details
-        const testData = {
-          full_name: 'Test User',
-          email: 'test@example.com',
-          applied_position: 'Test Position'
-        };
-        
-        const { error: insertError } = await supabase
-          .from('career_applications')
-          .insert([testData]);
-          
-        if (insertError) {
-          console.error('Test insert error:', insertError);
-          setDebugInfo(`Test insert error: ${insertError.message}`);
-        }
-      }
-    } catch (err) {
-      console.error('Schema check failed:', err);
-      setDebugInfo(`Schema check failed: ${err instanceof Error ? err.message : String(err)}`);
-    }
-  };
-
-  // Add effect to check schema when component mounts
-  useEffect(() => {
-    checkTableSchema();
-  }, []);
-
   const closeModal = () => {
     setIsModalOpen(false);
     // Reset form state when closing modal
@@ -335,7 +314,6 @@ const CareerPage = () => {
     }
 
     setUploadStatus('uploading');
-    setDebugInfo(null);
     
     try {
       // Upload resume file to Storage
@@ -358,30 +336,45 @@ const CareerPage = () => {
       if (!resumeUrl) {
         throw new Error('Failed to get resume URL');
       }
+
+      // Upload voice file if provided
+      let voiceUrl = '';
+      if (voiceFile) {
+        const voiceFileName = `${Date.now()}_${voiceFile.name}`;
+        const { data: voiceData, error: voiceError } = await supabase.storage
+          .from('applicationintrovoices')
+          .upload(voiceFileName, voiceFile);
+        
+        if (voiceError) {
+          throw new Error(`Voice file upload failed: ${voiceError.message}`);
+        }
+        
+        const { data: voiceUrlData } = await supabase.storage
+          .from('applicationintrovoices')
+          .getPublicUrl(voiceFileName);
+          
+        voiceUrl = voiceUrlData?.publicUrl || '';
+      }
       
-      // Log what we're trying to submit
+      // Submit application data
       const formDataToSubmit = {
         full_name: formData.fullName,
         email: formData.email,
         phone: formData.phone || null,
         applied_position: selectedJob?.title || '',
         resume_url: resumeUrl,
+        voice_url: voiceUrl || null,
         cover_letter: formData.coverLetter || ''
       };
       
-      console.log('Attempting to submit data:', formDataToSubmit);
-      
-      // Insert the application data with resume URL
-      const { data: applicationData, error: applicationError } = await supabase
+      const { error: applicationError } = await supabase
         .from('career_applications')
-        .insert([formDataToSubmit])
-        .select();
+        .insert([formDataToSubmit]);
 
       if (applicationError) {
         throw new Error(`Application submission failed: ${applicationError.message}`);
       }
 
-      console.log('Application submitted successfully:', applicationData);
       setUploadStatus('success');
       
       // We wait a bit before closing the modal to show the success message
@@ -393,11 +386,6 @@ const CareerPage = () => {
       console.error('Error submitting application:', error);
       setUploadStatus('error');
       setErrorMessage(error instanceof Error ? error.message : 'An unknown error occurred');
-      
-      // Set debug info
-      if (error instanceof Error) {
-        setDebugInfo(`Error details: ${error.message}`);
-      }
     }
   };
 
@@ -744,11 +732,6 @@ const CareerPage = () => {
                               className="p-3 bg-red-500/20 border border-red-500 rounded-lg text-red-200 text-sm"
                             >
                               {errorMessage}
-                              {debugInfo && (
-                                <div className="mt-2 p-2 bg-gray-800 rounded text-xs font-mono overflow-auto max-h-20">
-                                  {debugInfo}
-                                </div>
-                              )}
                             </motion.div>
                           )}
                           
@@ -846,18 +829,17 @@ const CareerPage = () => {
                                 <div className="flex flex-col items-center">
                                   <Upload className="h-8 w-8 text-gray-400 mb-2" />
                                   <label
-                                    htmlFor="resume-upload"
+                                    htmlFor="resume-upload-mobile"
                                     className="relative cursor-pointer rounded-md font-medium text-blue-400 hover:text-blue-300 focus-within:outline-none text-sm"
                                   >
                                     <span>Upload Resume</span>
                                     <input
-                                      id="resume-upload"
+                                      id="resume-upload-mobile"
                                       name="resume-upload"
                                       type="file"
                                       accept=".pdf,.doc,.docx"
                                       onChange={(e) => handleFileChange(e, 'resume')}
                                       className="sr-only"
-                                      required
                                     />
                                   </label>
                                 </div>
@@ -943,18 +925,10 @@ const CareerPage = () => {
                               >
                                 <p>Error submitting application.</p>
                                 {errorMessage && <p className="text-sm mt-1">{errorMessage}</p>}
-                                <p className="text-sm mt-1">Please try again.</p>
+                                <p className="text-sm mt-1">Please try again or contact support if the issue persists.</p>
                               </motion.div>
                             )}
                           </div>
-
-                          <button
-                            type="button"
-                            onClick={checkTableSchema}
-                            className="text-xs text-blue-400 hover:text-blue-300 mb-2"
-                          >
-                            Debug table schema
-                          </button>
                         </form>
                       )}
                     </div>
@@ -1019,11 +993,6 @@ const CareerPage = () => {
                                 className="p-3 bg-red-500/20 border border-red-500 rounded-lg text-red-200 text-sm mb-4"
                               >
                                 {errorMessage}
-                                {debugInfo && (
-                                  <div className="mt-2 p-2 bg-gray-800 rounded text-xs font-mono overflow-auto">
-                                    {debugInfo}
-                                  </div>
-                                )}
                               </motion.div>
                             )}
                             
@@ -1117,18 +1086,17 @@ const CareerPage = () => {
                                 <div className="flex flex-col items-center">
                                   <Upload className="h-10 w-10 text-gray-400 mb-2" />
                                   <label
-                                    htmlFor="resume-upload"
+                                    htmlFor="resume-upload-desktop"
                                     className="relative cursor-pointer rounded-md font-medium text-blue-400 hover:text-blue-300 focus-within:outline-none"
                                   >
                                     <span>Upload Resume</span>
                                     <input
-                                      id="resume-upload"
+                                      id="resume-upload-desktop"
                                       name="resume-upload"
                                       type="file"
                                       accept=".pdf,.doc,.docx"
                                       onChange={(e) => handleFileChange(e, 'resume')}
                                       className="sr-only"
-                                      required
                                     />
                                   </label>
                                 </div>
@@ -1214,18 +1182,10 @@ const CareerPage = () => {
                               >
                                   <p>Error submitting application.</p>
                                   {errorMessage && <p className="text-sm mt-1">{errorMessage}</p>}
-                                  <p className="text-sm mt-1">Please try again.</p>
+                                  <p className="text-sm mt-1">Please try again or contact support if the issue persists.</p>
                                 </motion.div>
                             )}
                           </div>
-
-                            <button
-                              type="button"
-                              onClick={checkTableSchema}
-                              className="text-xs text-blue-400 hover:text-blue-300 mb-2"
-                            >
-                              Debug table schema
-                            </button>
                         </form>
                         )}
                     </div>

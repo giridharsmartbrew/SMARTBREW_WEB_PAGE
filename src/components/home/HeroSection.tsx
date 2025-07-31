@@ -31,7 +31,7 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-screen flex items-center">
+    <section ref={sectionRef} className="relative min-h-[90vh] md:min-h-screen flex items-center mb-16 md:mb-0">
       {/* 3D Network Background */}
       <div className="absolute inset-0 z-0">
         <NetworkScene />
@@ -41,24 +41,24 @@ const HeroSection: React.FC = () => {
       <div className="overlay absolute inset-0 z-10 bg-gradient-to-b from-dark-950/80 via-dark-950/60 to-dark-950"></div>
       
       {/* Hero Content */}
-      <div className="content container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 pt-20">
+      <div className="content container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 pt-24 md:pt-28">
         <div className="max-w-3xl">
           <motion.h1 
-            className="text-5xl md:text-6xl font-bold mb-4 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <AnimatedText text="Transforming Technology," />
+            <AnimatedText text="Transforming Technology," className="block mb-2" />
             <AnimatedText 
               text="Empowering Sales" 
-              className="text-gradient" 
+              className="text-gradient block" 
               delay={0.4}
             />
           </motion.h1>
           
           <motion.p 
-            className="text-lg md:text-xl text-gray-300 mb-8"
+            className="text-base sm:text-lg md:text-xl text-gray-300 mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
@@ -68,7 +68,7 @@ const HeroSection: React.FC = () => {
           </motion.p>
           
           <motion.div 
-            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1 }}
@@ -84,22 +84,22 @@ const HeroSection: React.FC = () => {
           
           {/* Stats */}
           <motion.div 
-            className="grid grid-cols-2 sm:grid-cols-3 gap-6 mt-16"
+            className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 mb-12 md:mb-24"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.2 }}
           >
-            <div className="glass-card p-4">
-              <p className="text-3xl font-bold text-secondary-500">98%</p>
-              <p className="text-sm text-gray-400">Client Satisfaction</p>
+            <div className="glass-card p-4 sm:p-6">
+              <p className="text-2xl sm:text-3xl font-bold text-secondary-500">98%</p>
+              <p className="text-xs sm:text-sm text-gray-400">Client Satisfaction</p>
             </div>
-            <div className="glass-card p-4">
-              <p className="text-3xl font-bold text-secondary-500">250+</p>
-              <p className="text-sm text-gray-400">Projects Completed</p>
+            <div className="glass-card p-4 sm:p-6">
+              <p className="text-2xl sm:text-3xl font-bold text-secondary-500">250+</p>
+              <p className="text-xs sm:text-sm text-gray-400">Projects Completed</p>
             </div>
-            <div className="glass-card p-4 col-span-2 sm:col-span-1">
-              <p className="text-3xl font-bold text-secondary-500">35%</p>
-              <p className="text-sm text-gray-400">Average ROI Increase</p>
+            <div className="glass-card p-4 sm:p-6 col-span-2 sm:col-span-1">
+              <p className="text-2xl sm:text-3xl font-bold text-secondary-500">35%</p>
+              <p className="text-xs sm:text-sm text-gray-400">Average ROI Increase</p>
             </div>
           </motion.div>
         </div>
@@ -107,13 +107,12 @@ const HeroSection: React.FC = () => {
       
       {/* Scroll Indicator */}
       <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 hidden sm:block"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.6 }}
       >
         <div className="flex flex-col items-center">
-          <span className="text-sm text-gray-400 mb-2">Scroll to explore</span>
           <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
             <motion.div 
               className="w-1.5 h-1.5 bg-primary-500 rounded-full mt-2"

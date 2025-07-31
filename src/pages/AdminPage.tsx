@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Shield, LogOut, RefreshCw, Eye, Trash2, Download } from 'lucide-react';
+import { Shield, LogOut, RefreshCw, Eye, Trash2, Download, Activity } from 'lucide-react';
 
 // Define types for our data
 interface ContactSubmission {
@@ -261,13 +261,22 @@ const AdminPage = () => {
             <Shield className="w-6 h-6 mr-2 text-blue-500" />
             Admin Dashboard
           </h1>
-          <button 
-            onClick={() => navigate('/')}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-lg flex items-center"
-          >
-            <LogOut className="w-4 h-4 mr-2 text-white" />
-            Exit Dashboard
-          </button>
+          <div className="flex space-x-4">
+            <button 
+              onClick={() => navigate('/activity-admin')}
+              className="bg-gray-800 hover:bg-gray-700 text-white font-medium px-4 py-2 rounded-lg flex items-center border border-gray-700"
+            >
+              <Activity className="w-4 h-4 mr-2 text-blue-400" />
+              User Activity
+            </button>
+            <button 
+              onClick={() => navigate('/')}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-lg flex items-center"
+            >
+              <LogOut className="w-4 h-4 mr-2 text-white" />
+              Exit Dashboard
+            </button>
+          </div>
         </div>
         
         {error && (

@@ -7,7 +7,10 @@
     "dev": "vite",
     "clean-dev": "rimraf node_modules/.vite && rimraf .vite_cache && vite",
     "clean-all": "rimraf node_modules/.vite dist .vite_cache && vite --force",
-    "build": "vite build",
+    "build": "rimraf node_modules/.vite dist .vite_cache && vite build",
+    "deploy": "node deploy.js",
+    "deploy:prod": "node deploy.js your-production-bucket-name your-cloudfront-id",
+    "deploy:smartbrew": "bash deploy-smartbrew.sh smartbrew.in",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -19,6 +22,7 @@
     "@types/firebase": "^2.4.32",
     "@types/react-helmet-async": "^1.0.1",
     "@types/react-router-dom": "^5.3.3",
+    "date-fns": "^3.6.0",
     "firebase": "^11.7.1",
     "framer-motion": "^10.18.0",
     "gsap": "^3.12.4",
@@ -28,6 +32,7 @@
     "react-helmet-async": "^2.0.5",
     "react-router-dom": "^6.30.0",
     "three": "^0.160.1",
+    "ua-parser-js": "^1.0.40",
     "zustand": "^4.5.0"
   },
   "devDependencies": {
@@ -35,6 +40,7 @@
     "@types/react": "^18.3.21",
     "@types/react-dom": "^18.3.7",
     "@types/three": "^0.160.0",
+    "@types/ua-parser-js": "^0.7.39",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.18",
     "eslint": "^9.9.1",

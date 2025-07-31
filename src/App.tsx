@@ -20,6 +20,7 @@ import BlogsPage from './pages/BlogsPage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import AdminPage from './pages/AdminPage';
+import ActivityAdminPage from './pages/ActivityAdminPage';
 import ResetPassword from './pages/ResetPassword';
 import UpdatePassword from './pages/UpdatePassword';
 import AuthCallback from './pages/AuthCallback';
@@ -28,11 +29,19 @@ import TermsOfService from './pages/TermsOfService';
 
 // Context
 import { AuthProvider } from './context/AuthContext';
+import { ActivityProvider } from './context/ActivityContext';
+
+// Wrap MainLayout with ActivityProvider
+const MainLayoutWithActivity = () => (
+  <ActivityProvider>
+    <MainLayout />
+  </ActivityProvider>
+);
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: <MainLayoutWithActivity />,
     children: [
       { index: true, element: <HomePage /> },
       { path: "about", element: <AboutPage /> },
@@ -44,6 +53,7 @@ const router = createBrowserRouter([
       { path: "signin", element: <SignInPage /> },
       { path: "signup", element: <SignUpPage /> },
       { path: "admin", element: <AdminPage /> },
+      { path: "activity-admin", element: <ActivityAdminPage /> },
       { path: "reset-password", element: <ResetPassword /> },
       { path: "update-password", element: <UpdatePassword /> },
       { path: "auth-callback", element: <AuthCallback /> },
