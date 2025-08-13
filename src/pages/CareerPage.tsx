@@ -17,7 +17,7 @@ interface JobOpening {
 }
 
 const jobOpenings: JobOpening[] = [
-  // Sales Positions (IDs 1-3)
+  // Sales Positions
   {
     id: 1,
     title: "Impact Sales Executive",
@@ -65,105 +65,6 @@ const jobOpenings: JobOpening[] = [
       "Professional networking with nonprofit organizations",
       "Experience in campaign planning and execution",
       "Full-time in-office internship experience"
-    ]
-  },
-  {
-    id: 3,
-    title: "Impact Sales Intern",
-    department: "Sales",
-    location: "Patna, India",
-    type: "Internship (2-6 months)",
-    description: "Are you driven by purpose and looking to create a meaningful impact while building a rewarding career? As an Impact Sales Intern at SMARTBREW Solutions, you will play a crucial role in supporting nonprofit organizations by generating resources, fostering relationships, and helping to transform lives, communities, and contribute towards nation building.",
-    requirements: [
-      "Purpose-Driven: You're passionate about making a difference and supporting charitable causes",
-      "Hungry for Success: You thrive on achieving goals and creating meaningful outcomes",
-      "Exceptional Communicator: You can inspire action through clear, persuasive communication",
-      "Relationship Builder: You excel at connecting with people and building trust",
-      "Team Player: You collaborate effectively and contribute to collective success",
-      "Adaptable: You think creatively and adjust strategies to achieve results",
-      "Active on social media platforms"
-    ],
-    benefits: [
-      "Stipend: ₹5,000 - 7,000/- per month",
-      "Hands-on experience in impact-driven sales",
-      "Opportunity to contribute directly to charitable initiatives",
-      "Skill development in fundraising and relationship building",
-      "Professional networking with nonprofit organizations",
-      "Experience in campaign planning and execution",
-      "Full-time in-office internship experience"
-    ]
-  },
-  // Engineering Positions (IDs 4-6)
-  {
-    id: 4,
-    title: "Python Backend Developer Intern",
-    department: "Engineering",
-    location: "Gurugram, India",
-    type: "Internship (3-6 months)",
-    description: "We are seeking a highly motivated Backend Developer Intern with a strong foundation in Python, Django, MySQL, and MongoDB. You will work with our engineering team to build robust APIs, manage databases, and ensure the backend architecture supports a seamless user experience across our platforms.",
-    requirements: [
-      "Proficiency in Python and hands-on experience with the Django framework",
-      "Strong working knowledge of MySQL and MongoDB",
-      "Familiarity with building and consuming RESTful APIs",
-      "Understanding of Git and version control workflows",
-      "Analytical thinking, problem-solving mindset, and attention to detail",
-      "Currently pursuing or recently completed a degree in Computer Science, IT, or related field"
-    ],
-    benefits: [
-      "Stipend: ₹7,000/- per month",
-      "Real-world experience working on scalable backend projects",
-      "Opportunity to learn from and collaborate with experienced developers",
-      "Exposure to agile methodologies and DevOps workflows",
-      "Certificate of Internship and Letter of Recommendation upon completion",
-      "Potential offer for full-time employment based on performance"
-    ]
-  },
-  {
-    id: 5,
-    title: "DevOps Intern",
-    department: "Engineering",
-    location: "Gurugram, India",
-    type: "Internship (3-6 months)",
-    description: "We are looking for a detail-oriented and proactive DevOps Intern to assist in managing and automating deployment processes, monitoring systems, and improving development operations. This role will provide hands-on experience with tools and practices in modern DevOps environments.",
-    requirements: [
-      "Basic understanding of Linux-based systems and command-line operations",
-      "Familiarity with Docker, CI/CD tools, and version control (Git)",
-      "Good knowledge of scripting languages like Bash or Python",
-      "Understanding of cloud computing concepts (AWS/GCP/Azure – even at beginner level)",
-      "Problem-solving attitude and eagerness to learn modern DevOps practices",
-      "Pursuing or recently completed a degree in Computer Science, IT, or related field"
-    ],
-    benefits: [
-      "Stipend: ₹7,000/- per month",
-      "Practical experience with real-world DevOps practices and tools",
-      "Mentorship and guidance from experienced DevOps and engineering professionals",
-      "Hands-on exposure to cloud infrastructure and automation",
-      "Certificate of Internship and Letter of Recommendation upon completion",
-      "Potential opportunity for full-time employment based on performance"
-    ]
-  },
-  {
-    id: 6,
-    title: "React Frontend Developer Intern",
-    department: "Engineering",
-    location: "Gurugram, India",
-    type: "Internship (3-6 months)",
-    description: "At SMARTBREW Solutions Pvt Ltd, we are seeking a motivated and detail-oriented React Frontend Developer Intern to join our growing team in Gurugram. This role is ideal for someone looking to gain hands-on experience in building modern web applications using React.js. You'll work closely with our design and backend teams to deliver seamless, performant, and user-centric interfaces.",
-    requirements: [
-      "Proficiency in JavaScript, HTML5, CSS3",
-      "Hands-on experience with React.js, including hooks and functional components",
-      "Familiarity with Git and version control workflows",
-      "Understanding of REST APIs and asynchronous operations",
-      "Strong problem-solving and communication skills",
-      "Pursuing or recently completed a degree in Computer Science, IT, or related field"
-    ],
-    benefits: [
-      "Stipend: ₹7,000/- per month",
-      "Hands-on experience working on real-world web applications",
-      "Exposure to agile workflows and development lifecycle",
-      "Mentorship from experienced engineers and technical leaders",
-      "Certificate of Internship and Letter of Recommendation upon completion",
-      "Potential opportunity for full-time employment based on performance"
     ]
   }
 ];
@@ -525,8 +426,8 @@ const CareerPage = () => {
             </div>
           </div>
 
-          {/* Engineering Jobs Section */}
-          <div>
+          {/* Engineering Jobs Section - Commented out as no engineering positions are currently available */}
+          {/* <div>
             <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
               <Settings className="w-6 h-6 mr-3 text-blue-400" />
               Engineering Opportunities
@@ -626,7 +527,7 @@ const CareerPage = () => {
                 </motion.div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Application Modal */}
