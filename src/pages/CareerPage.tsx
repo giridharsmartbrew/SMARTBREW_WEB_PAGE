@@ -694,7 +694,7 @@ const CareerPage = () => {
                             
                             <div>
                               <label className="block text-sm font-medium text-gray-300 mb-1">
-                                LinkedIn Profile
+                                LinkedIn Profile (optional)
                               </label>
                               <input
                                 type="url"
@@ -952,7 +952,7 @@ const CareerPage = () => {
                           
                           <div>
                             <label className="block text-sm font-medium text-gray-300 mb-1">
-                              LinkedIn Profile
+                              LinkedIn Profile (optional)
                             </label>
                             <input
                               type="url"
